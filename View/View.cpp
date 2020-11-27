@@ -3,4 +3,7 @@
 int main()
 {
     scan();
+    showAll();
 }
+
+
