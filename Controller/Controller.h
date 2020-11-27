@@ -44,7 +44,7 @@ void scan()
         sum += tahun * 360;
         pushMid(tanggal,bulan,tahun,name,sum);
     }
-    showCured(a-b,a);
+    showCured(a,b);
 }
 
 void pushMid(int tanggal, char *bulan, int tahun, char *name, long long sum)
@@ -79,12 +79,38 @@ void pushMid(int tanggal, char *bulan, int tahun, char *name, long long sum)
     }
 }
 
-void showCured(int pasien,int temp)
+void popTail()
+{
+    if(!head) return;
+    else {
+        Node *curr = head;
+        while(curr->next->sum != tail->sum)
+        {
+            curr = curr->next;
+        }
+        Node *temp = tail;
+        tail->prev = NULL;
+        free(temp);
+        curr->next = NULL;
+        tail = curr;
+    }
+}
+void showCured(int a,int b)
 {    
     Node *curr = tail;
-    printf("Need %d more cure\n",pasien);
-    for(int i = 0;i<temp,curr;curr = curr->prev,i++)
+    printf("Need %d more cure\n",a-b);
+    for(int i = 1;i<b;i++)
+    {
+        popTail();
+    }
+}
+
+void showAll()
+{
+    Node *curr = tail;
+    while(curr)
     {
         printf("%d %s %d - %s\n",curr->tanggal,curr->bulan,curr->tahun,curr->name);
+        curr = curr->prev;
     }
 }
